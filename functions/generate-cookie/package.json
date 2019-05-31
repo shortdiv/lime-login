@@ -1,0 +1,17 @@
+{
+  "name": "set-cookie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "set-cookie.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cookie"
+  ],
+  "author": "Divya",
+  "license": "MIT",
+  "dependencies": {
+    "cookie": "^0.4.0"
+  }
+}
