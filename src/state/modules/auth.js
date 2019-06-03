@@ -13,6 +13,23 @@ export const state = {
 };
 
 export const actions = {
+  init({ commit }) {
+    auth
+      .currentUser()
+      .jwt()
+      .then(token => {
+        axios
+          .get("/.netlify/functions/verify-session", {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          })
+          .then(res => {
+            commit("SET_CURRENT_USER", res.data);
+            console.log(res);
+          });
+      });
+  },
   attemptLogin({ commit, dispatch }, credentials) {
     return new Promise((resolve, reject) => {
       dispatch("attemptConfirmation", credentials).then(() => {
