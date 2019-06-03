@@ -23,7 +23,7 @@ export const actions = {
             let user = JSON.parse(JSON.stringify(response));
             resolve(user);
             commit("SET_CURRENT_USER", user);
-            dispatch("setCookie");
+            dispatch("setCookie", user.token);
           })
           .catch(error => {
             reject(error.json);
@@ -88,17 +88,15 @@ export const actions = {
         });
     });
   },
-  setCookie() {
-    const user = auth.currentUser();
-    const jwt = user.jwt();
-    jwt.then(response => {
-      axios
-        .post("/.netlify/functions/generate-cookie", { jwt: response })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => console.err(err));
-    });
+  setCookie(context, token) {
+    axios
+      .post("/.netlify/functions/generate-cookie", {
+        token
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.err(err));
   },
   deleteCookie() {
     axios
