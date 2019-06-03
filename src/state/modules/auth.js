@@ -14,6 +14,9 @@ export const state = {
 
 export const actions = {
   init({ commit }) {
+    if (auth.currentUser() == null) {
+      return;
+    }
     auth
       .currentUser()
       .jwt()
