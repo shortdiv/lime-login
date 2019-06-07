@@ -1,0 +1,16 @@
+{
+  "name": "redirect",
+  "version": "1.0.0",
+  "description": "",
+  "main": "redirect.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Divya",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "cookie": "^0.4.0",
+    "url-parse": "^1.4.7"
+  }
+}

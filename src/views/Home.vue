@@ -3,6 +3,7 @@
     <LoginWidget v-if="isLoggedIn" />
     <LoginScreen v-if="!isLoggedIn" />
     <div v-else>
+      <button @click="goToApple">Navigate to Apple</button>
       Hello there!
     </div>
   </div>
@@ -21,6 +22,12 @@ export default {
   },
   computed: {
     ...mapGetters("auth", ["isLoggedIn"])
+  },
+  methods: {
+    goToApple() {
+      window.location.href =
+        "/.netlify/functions/redirect?site=https://apple-security.netlify.com/";
+    }
   }
 };
 </script>
