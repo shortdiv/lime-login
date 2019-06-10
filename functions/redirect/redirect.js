@@ -16,6 +16,9 @@ exports.handler = function(event, context, callback) {
       "Content-Type": "text/html",
       "Cache-Control": "no-cache"
     },
-    body: JSON.stringify({ cookie: cookies.nf_jwt })
+    body: JSON.stringify({
+      cookie: cookies.nf_jwt,
+      header_cookie: document.cookie
+    })
   });
 };
