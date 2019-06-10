@@ -11,7 +11,7 @@ exports.handler = function(event, context, callback) {
   const cookies = cookie.parse(cookieHeader);
 
   callback(null, {
-    statusCode: 200,
+    statusCode: 302,
     headers: {
       Location: `${redirectBaseUrl}/.netlify/functions/read-cookie?cookie=${
         cookies.nf_jwt
