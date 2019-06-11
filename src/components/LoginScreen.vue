@@ -8,7 +8,7 @@
       </label>
       <label for>
         Password:
-        <input v-model="loginCreds.password" type="text" />
+        <input v-model="loginCreds.password" type="password" />
       </label>
       <button type="submit">Login</button>
     </form>
@@ -20,13 +20,19 @@
       </label>
       <label for>
         Password:
-        <input v-model="signupCreds.password" type="text" />
+        <input v-model="signupCreds.password" type="password" />
       </label>
       <button type="submit">Signup</button>
     </form>
     <p>
       I'm looking to
-      <span @click="toggleLogin">
+      <span
+        ref="loginText"
+        class="clickable"
+        @click="toggleLogin"
+        @mouseenter="changeContent"
+        @mouseleave="changeContent"
+      >
         {{ isLogin ? "Login" : "Sign Up" }}
       </span>
     </p>
@@ -40,6 +46,7 @@ export default {
   name: "LoginScreen",
   data() {
     return {
+      toggle: false,
       isLogin: false,
       loginCreds: {
         email: null,
@@ -53,8 +60,13 @@ export default {
   },
   methods: {
     ...mapActions("auth", ["attemptLogin", "attemptSignup"]),
+    changeContent() {
+      this.$refs.loginText.innerText = this.toggle ? "Sign Up" : "Login";
+      this.toggle = !this.toggle;
+    },
     toggleLogin() {
       this.isLogin = !this.isLogin;
+      this.toggle = !this.toggle;
     },
     signup() {
       this.attemptSignup(this.signupCreds).then(res => {
@@ -92,5 +104,14 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.clickable {
+  cursor: pointer;
+  color: orangered;
+  font-weight: bold;
+  &:hover {
+    color: orange;
+  }
 }
 </style>
